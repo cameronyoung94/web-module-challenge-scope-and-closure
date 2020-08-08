@@ -28,7 +28,11 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ *  count is in the function scope in counter1, and in the global scope in counter2
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * both
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
@@ -56,11 +60,14 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  return Math.floor(Math.random() * 3);
 }
+console.log("home:", inning());
+function awayinning(){
+  return Math.floor(Math.random() * 3);
+}
+console.log("away:", inning());
 
 /* Task 3: finalScore()
 
@@ -76,11 +83,24 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(callback, numInnings){
+  let home = 0
+  let away = 0
+  for(let i = 0; i <= numInnings; i++){
+    home += callback();
+  }
+  for(let j = 0; j <= numInnings; j++){
+    away += callback();
+  }
+    return {
+      "Home": home,
+      "Away": away
+    }
+}
+console.log(finalScore(inning, 9))
 
   /*Code Here*/
 
-}
 
 /* Task 4: 
 
@@ -102,9 +122,28 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(callback, callback2, numInnings) {
+  let home = 0;
+  let away = 0;
+  for(let i = 1; i <= numInnings; i++) {
+    home += callback();
+    away += callback2();
+    if (i == 1) {
+      console.log(`${i}st inning: ${away} - ${home}`)
+    }
+    else if(i == 2) {
+      console.log(`${i}nd inning: ${away} - ${home}`)
+    }
+    else if(i == 3) {
+      console.log(`${i}rd inning: ${away} - ${home}`)
+    }
+    else {
+      console.log(`${i}th inning: ${away} - ${home}`)
+    }
+  }
+  return `Final Score: ${away} - ${home}`
 }
+console.log(scoreboard(inning, awayinning, 9))
+
 
 
