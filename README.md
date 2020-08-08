@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+it is functions that are bundled together that reference the lexical environment and actually work
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,17 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+on line 51 and 57 because thats where the function begins and ends you can tell with the curly braces
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
+
+the name dan will always be the same but his roll will always come out different because of the math.random
+
+c. What is the lexical scope of `newRoll`?
+ 
+it is a the block scope of the return function in the function personaldice
+
 
 ### Task 2c - Exit Ticket
 
